@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import Head from "./Components/Head";
+import Body from "./Components/Body";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import WatchPage from "./Components/WatchPage";
+import MainContainer from "./Components/MainContainer";
+import {useSelector } from "react-redux";
+import History from "./Components/History";
+import Demo from "./Components/Demo";
+import Demo2 from "./Components/Demo2";
+
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "/",
+        element: <MainContainer />,
+      },
+      {
+        path: "/watch",
+        element: <WatchPage />,
+      },
+      {
+        path: "/demo",
+        element: (
+          <>
+            <Demo /> <Demo2 />
+          </>
+        ),
+      },
+      {
+        path:'/history',
+        element: <History/>
+      }
+    ],
+  },
+]);
 
 function App() {
+
+  const dark = useSelector((store)=> store.dark.dark);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className={dark?"dark":""}>
+      <div className="bg-white dark:bg-black  text-black dark:text-white ">
+        <Head />
+        <RouterProvider router={appRouter} />
+      </div>
+     </div>
   );
 }
 
