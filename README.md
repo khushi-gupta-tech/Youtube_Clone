@@ -58,5 +58,3 @@ This project demonstrates key frontend concepts like API integration, state mana
 
 🤝 Contributing
 Contributions are welcome! Feel free to fork this repo and submit pull requests.
-
-
