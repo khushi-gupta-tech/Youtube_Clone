@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Home,
   Clapperboard,
@@ -27,16 +27,22 @@ import {
   Flame,
   Users
 } from "lucide-react";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const dark = useSelector((store) => store.dark.dark);
-
+  const navigate = useNavigate()
   if (!isMenuOpen) return null;
 
   const liClass =
     "flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800";
 
+    const refresh = () =>{
+        navigate("/")
+        window.location.reload();
+    }
+  
   return (
     <div className={dark ? "dark" : ""}>
       <div className="p-5 w-52 fixed top-14 left-0 h-screen overflow-y-auto bg-white z-50 whitespace-nowrap [&::-webkit-scrollbar]:hidden scrollbar-hide hover:[&::-webkit-scrollbar]:block hover:[scrollbar-width:thin] hover:[&::-webkit-scrollbar-thumb]:bg-gray-700 hover:[&::-webkit-scrollbar-thumb]:rounded-md dark:bg-black dark:text-white">
@@ -44,7 +50,7 @@ const Sidebar = () => {
         {/* Home Section */}
         <ul>
           <Link to="/">
-            <li className={liClass}>
+            <li className={liClass} onClick={refresh}>
               <Home /> Home
             </li>
           </Link>

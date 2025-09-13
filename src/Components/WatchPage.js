@@ -24,7 +24,7 @@ const WatchPage = () => {
     const VIDEO_DETAILS_API = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${id}&key=${GOOGLE_API_KEY}`;
     const res = await fetch(VIDEO_DETAILS_API);
     const data = await res.json();
-
+   // console.log(data)
     if (data?.items?.length > 0) {
       setVideoinfo(data.items[0]);
     } else {
