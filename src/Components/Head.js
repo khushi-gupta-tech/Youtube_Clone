@@ -95,7 +95,7 @@ const Head = () => {
             alt="logo"
           />
           <img
-            className="h-10 ml-4 cursor-pointer hidden dark:block"
+            className="h-10 w-16 ml-4 cursor-pointer hidden dark:block"
             src="https://www.gadgety.co.il/wp-content/themes/main/thumbs/2020/02/youtube-logo_dark-812x541.jpg"
             alt="logo"
           />
@@ -143,7 +143,7 @@ const Head = () => {
         </div>
 
         {/* User Section */}
-        <div className="col-span-2 flex justify-end ">
+        <div className="col-span-2 flex justify-end  mr-2">
           <DarkMode />
           <img
             className="h-7 cursor-pointer rounded-full"
