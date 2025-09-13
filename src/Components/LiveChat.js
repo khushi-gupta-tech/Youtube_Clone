@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChatMessage from "./ChatMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../utils/chatSlice";
-import { generateRandomName } from "../utils/helper";
+import { generateRandomName,generateRandomMessage } from "../utils/helper";
 
 const LiveChat = () => {
   const [liveMessage, setLiveMessage] = useState("");
@@ -19,7 +19,7 @@ const LiveChat = () => {
       dispatch(
         addMessage({
           name: generateRandomName(),
-          message: "lorem ipsum dolor",
+          message: generateRandomMessage(),
         })
       );
     }, 1500);
@@ -30,7 +30,7 @@ const LiveChat = () => {
 
   return (
     <>
-      <div className=" w-full h-[600px] ml-2 p-2 border border-black bg-slat-100 rounded lg overflow-y-scroll flex flex-col-reverse">
+      <div className=" w-full h-[410px] mt-2 ml-2 p-2 border border-black bg-slat-100 rounded lg overflow-y-scroll flex flex-col-reverse">
         <div>
           {chatMessages.map((c) => (
             <ChatMessage name={c.name} message={c.message} />
@@ -42,18 +42,19 @@ const LiveChat = () => {
       onSubmit={(e)=>{
         e.preventDefault();
         dispatch(addMessage({
-            name:"khushi",
+            name:"Khushi",
             message:liveMessage,
         }))
         setLiveMessage("");
       }}>
         <input
-          className="w-96 px-2"
+          className="w-72 border px-2"
           type="text"
+          placeholder="Chat"
           value={liveMessage}
           onChange={(e) => setLiveMessage(e.target.value)}
         />
-        <button className="px-2 mx-2 bg-green-100">Send</button>
+        <button className="px-2 mx-2 bg-green-300 hover:bg-green-400">Send</button>
       </form>
     </>
   );

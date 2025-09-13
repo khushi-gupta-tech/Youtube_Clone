@@ -7,7 +7,7 @@ import {useSelector } from "react-redux";
 import History from "./Components/History";
 import Demo from "./Components/Demo";
 import Demo2 from "./Components/Demo2";
-
+import LivePage from "./Components/LivePage";
 
 const appRouter = createBrowserRouter([
   {
@@ -33,6 +33,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/history',
         element: <History/>
+      },
+      {
+        path:'/live',
+        element:<LivePage/>
       }
     ],
   },

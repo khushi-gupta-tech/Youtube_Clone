@@ -6,7 +6,9 @@ import WatchCart from "./WatchCart";
 import { ThumbsUp, ThumbsDown, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { historyCarts } from "../utils/cartSlice";
-import {GOOGLE_API_KEY} from "../utils/constants";
+import LiveChat from "./LiveChat";
+import CommentsContainer from "./CommentsContainer";
+
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
   const [videoInfo, setVideoinfo] = useState(null);
@@ -21,6 +23,7 @@ const WatchPage = () => {
   }, [id, dispatch]);
 
   const videoData = async () => {
+    const GOOGLE_API_KEY = "AIzaSyBGBbCaqdbXOE5gnboh2yukrtIV7tr0HiA";
     const VIDEO_DETAILS_API = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${id}&key=${GOOGLE_API_KEY}`;
     const res = await fetch(VIDEO_DETAILS_API);
     const data = await res.json();
@@ -35,13 +38,13 @@ const WatchPage = () => {
      
   return (
     <div className="flex flex-col w-full">
-      <div className="px-5 mx-14  my-2 pt-[64px] flex w-full">
+      <div className="px-5 mx-8 my-2 mt-2 pt-[64px] flex w-full">
         <div className="">
           <iframe
             className="rounded-lg"
             width="840"
             height="460"
-            src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+            src={"https://www.youtube.com/embed/" + searchParams.get("v") + "?&autoplay=1"}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -98,12 +101,15 @@ const WatchPage = () => {
           )}
         </div>
         <div className="w-[390px] ml-6 ">
+            <LiveChat/>
+            <div className="mt-10 ml-2">
           {data.map((v) => (
             <Link key={v.id} to={"/watch?v="+ v.id} onClick={()=>videoClick(v)}>
                 <WatchCart info={v} />
             </Link>
         
           ))}
+          </div>
         </div>
       </div>
     </div>
