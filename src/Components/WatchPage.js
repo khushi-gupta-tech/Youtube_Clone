@@ -24,7 +24,14 @@ const WatchPage = () => {
     const VIDEO_DETAILS_API = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${id}&key=${GOOGLE_API_KEY}`;
     const res = await fetch(VIDEO_DETAILS_API);
     const data = await res.json();
-    setVideoinfo(data.items[0]);
+
+    if (data?.items?.length > 0) {
+      setVideoinfo(data.items[0]);
+    } else {
+      setVideoinfo(null); // No video found
+      console.error("No video found for ID:", id, data);
+    }
+   
   };
   const data = useSelector((store) => store.cart.cart);
   console.log(data);
