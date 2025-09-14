@@ -2,12 +2,12 @@
 import express from "express";
 import fetch from "node-fetch"; // make sure node-fetch@3 is installed
 import cors from "cors";
-
+import GOOGLE_API_KEY from "../src/constants";
 const app = express();
 app.use(cors()); // allow requests from React
 
 const PORT = 5000;
-const GOOGLE_API_KEY = "AIzaSyAajHI__HM6JYvDEohGEUgNPPRhZh7DBUk";
+
 
 // ✅ Get popular videos
 app.get("/videos", async (req, res) => {
