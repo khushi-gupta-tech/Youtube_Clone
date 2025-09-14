@@ -2,7 +2,7 @@
 import express from "express";
 import fetch from "node-fetch"; // make sure node-fetch@3 is installed
 import cors from "cors";
-import GOOGLE_API_KEY from "../src/constants";
+import GOOGLE_API_KEY from "../src/utils/constants";
 const app = express();
 app.use(cors()); // allow requests from React
 
